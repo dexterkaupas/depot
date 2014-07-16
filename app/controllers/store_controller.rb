@@ -1,14 +1,15 @@
+#---
+# Excerpted from "Agile Web Development with Rails",
+# published by The Pragmatic Bookshelf.
+# Copyrights apply to this code. It may not be used to create training material, 
+# courses, books, articles, and the like. Contact us if you are in doubt.
+# We make no guarantees that this code is fit for any purpose. 
+# Visit http://www.pragmaticprogrammer.com/titles/rails4 for more book information.
+#---
 class StoreController < ApplicationController
-  def increment_counter
-  	if session[:counter].nil?
-  	  session[:counter] = 0
-  	end
- 	 session[:counter] += 1
-  end
+  include CurrentCart
+  before_action :set_cart
   def index
-  	increment_counter
     @products = Product.order(:title)
-    @time = Time.now
   end
-
 end
